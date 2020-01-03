@@ -11,7 +11,6 @@ export default new Vuex.Store({
     },
     getters: {
         getStorage(state){
-            window.console.log('call getStorage');
             if (!state.user && localStorage.getItem(key)) {
                 state.user = JSON.parse(localStorage.getItem(key))
             }
@@ -20,12 +19,10 @@ export default new Vuex.Store({
     },
     mutations:{
         $_setStorage(state, value) {
-            window.console.log('call $_setStorage');
             state.user = value;
             localStorage.setItem(key, value);
         },
         $_removeStorage(state){
-            window.console.log('call $_removeStorage');
             state.user = null;
             localStorage.removeItem(key);
         }

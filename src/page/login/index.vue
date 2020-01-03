@@ -2,21 +2,13 @@
     <div class="login-div">
         <div class="login-head">
             <div class="float_right">
-                <Languages>
-                    <div slot="langs">
-                        dfadfadsf
-                        dfads
-                        fda
-                        fdas
-                        f
-                    </div>
-                </Languages>
+                <Languages @changeLang="changeLang"></Languages>
             </div>
         </div>
         <div class="login-body">
             <el-col :span="8" :offset="8">
                 <el-card class="box-card" shadow="always">
-                    <div slot="header" class="clearfix">
+                    <div class="clearfix">
                         <span>登录</span>
                         <el-tooltip effect="light" content="点击注册" placement="top-start">
                             <el-button class="float_right" style="padding: 3px 0" type="text">没有账号？</el-button>
@@ -28,7 +20,7 @@
                                 <el-input v-model="user.username"></el-input>
                             </el-form-item>
                             <el-form-item label="密码">
-                                <el-input v-model="user.password"></el-input>
+                                <el-input v-model="user.password" show-password></el-input>
                             </el-form-item>
                             <el-form-item>
                                 <el-button type="primary" class="float_right" @click="doLogin">登录</el-button>
@@ -50,14 +42,26 @@
                 user:{
                     username:'zhangsan',
                     password:'123',
-                }
+                },
+                langs:[
+                    '简体中文', 'English', '繁體中文'
+                ]
             }
         },
         methods: {
             doLogin(){
+                //TODO::check用户名和密码
+
                 //将用户信息填入到localstorage中
                 this.$store.commit('$_setStorage', JSON.stringify(this.user))
                 this.$router.push('home');
+            },
+            changeLang(lang){
+                //TODO::后期再实现多国化
+                this.$message({
+                    message: this.langs[lang],
+                    type: 'success'
+                });
             }
         },
         components:{
@@ -70,10 +74,6 @@
     .login-head{
         height: 10vh;
         margin-bottom: 20vh;
-    }
-    .lang_btn{
-        padding: 30px 50px;
-        font-size: large;
     }
     .float_right{
         float: right;
