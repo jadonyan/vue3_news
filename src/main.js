@@ -3,11 +3,14 @@ import VueRouter from 'vue-router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue'
+import axios from 'axios'
 
 import routes from './router'
 import store from "./store"
+import './mock/mock'
 
 Vue.config.productionTip = false;
+Vue.prototype.$axios = axios    //全局注册，使用方法为:this.$axios
 
 Vue.use(ElementUI);
 Vue.use(VueRouter);

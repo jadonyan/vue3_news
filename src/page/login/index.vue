@@ -51,10 +51,15 @@
         methods: {
             doLogin(){
                 //TODO::check用户名和密码
-
-                //将用户信息填入到localstorage中
-                this.$store.commit('$_setStorage', JSON.stringify(this.user))
-                this.$router.push('home');
+                this.$axios.post("http://www.location.com/login")
+                    .then((response)=>{
+                        window.console.log(response);
+                        if(response.data.isLogin){
+                            //将用户信息填入到localstorage中
+                            this.$store.commit('$_setStorage', JSON.stringify(this.user))
+                            this.$router.push('home');
+                        }
+                    });
             },
             changeLang(lang){
                 //TODO::后期再实现多国化

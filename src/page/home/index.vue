@@ -17,32 +17,39 @@
         data() {
             return {
                 title:'国内要闻',
+                tableData: [],
                 columnData:[
                     {
-                        prop:'date',
-                        label: '日期',
+                        prop:'news_title',
+                        label: '新闻标题',
                         width: '140',
                     },
                     {
-                        prop:'name',
-                        label: '姓名',
+                        prop:'news_press',
+                        label: '新闻媒介',
                         width: '140',
                     },
                     {
-                        prop:'address',
-                        label: '地址',
+                        prop:'news_time',
+                        label: '发布时间',
                         width: '',
                     },
                 ],
-                tableData: Array(20).fill({
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                })
+            }
+        },
+        methods:{
+            getNews(){
+                this.$axios.get("http://www.location.com/news/list")
+                    .then((response)=>{
+                        this.tableData=response.data.newslist;
+                    })
             }
         },
         components:{
             Header,Menu,Main
+        },
+        created(){
+            this.getNews();
         }
     }
 </script>

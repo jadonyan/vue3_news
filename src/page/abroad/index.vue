@@ -16,47 +16,40 @@
     export default {
         data() {
             return {
-
-                tableData: [{
-                    date: '2016-05-02',
-                    name: '王小虎3',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎6',
-                    address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎1',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎2',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }],
-
                 title:'国外要闻',
+                tableData: [],
                 columnData:[
                     {
-                        prop:'date',
-                        label: '日期2222',
+                        prop:'news_title',
+                        label: '新闻标题',
                         width: '140',
                     },
                     {
-                        prop:'name',
-                        label: '姓名dddd',
+                        prop:'news_press',
+                        label: '新闻媒介',
                         width: '140',
                     },
                     {
-                        prop:'address',
-                        label: '地址2222',
+                        prop:'news_time',
+                        label: '发布时间',
                         width: '',
                     },
                 ],
             }
         },
+        methods:{
+            getNews(){
+                this.$axios.get("http://www.location.com/news/list")
+                        .then((response)=>{
+                            this.tableData=response.data.newslist;
+                        })
+            }
+        },
         components:{
             Header,Menu,Main
+        },
+        created(){
+            this.getNews();
         }
     }
 </script>
