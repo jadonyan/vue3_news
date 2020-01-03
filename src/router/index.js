@@ -10,9 +10,15 @@ export default [{
     component: App,
     children: [{
         path: '/home',
+        name: 'home',
         component: r => require.ensure([], () => r(require('../page/home')), 'home')
     }, {
+        path: '/abroad',
+        name: 'abroad',
+        component: r => require.ensure([], () => r(require('../page/abroad')), 'abroad')
+    },{
         path: '/login',
+        name: 'login',
         component: Login
     }]
 }]

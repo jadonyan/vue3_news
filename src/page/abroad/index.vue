@@ -16,29 +16,43 @@
     export default {
         data() {
             return {
-                title:'国内要闻',
+
+                tableData: [{
+                    date: '2016-05-02',
+                    name: '王小虎3',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎6',
+                    address: '上海市普陀区金沙江路 1517 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎1',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎2',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }],
+
+                title:'国外要闻',
                 columnData:[
                     {
                         prop:'date',
-                        label: '日期',
+                        label: '日期2222',
                         width: '140',
                     },
                     {
                         prop:'name',
-                        label: '姓名',
+                        label: '姓名dddd',
                         width: '140',
                     },
                     {
                         prop:'address',
-                        label: '地址',
+                        label: '地址2222',
                         width: '',
                     },
                 ],
-                tableData: Array(20).fill({
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                })
             }
         },
         components:{

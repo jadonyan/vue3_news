@@ -1,6 +1,6 @@
 <template>
     <div class="header_div">
-        <Logo></Logo>
+        <Logo><div slot="app_name" style="color: #fff; float: left">Application</div></Logo>
         <UserInfo :user="user"></UserInfo>
         <Languages @changeLang="changeLang" :langs="langs"></Languages>
     </div>
