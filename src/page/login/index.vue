@@ -1,14 +1,12 @@
 <template>
     <div class="login-div">
         <div class="login-head">
-            <div class="float_right">
-                <Languages @changeLang="changeLang"></Languages>
-            </div>
+            <Languages @changeLang="changeLang" :langs="langs"></Languages>
         </div>
         <div class="login-body">
             <el-col :span="8" :offset="8">
                 <el-card class="box-card" shadow="always">
-                    <div class="clearfix">
+                    <div slot="header" class="clearfix">
                         <span>登录</span>
                         <el-tooltip effect="light" content="点击注册" placement="top-start">
                             <el-button class="float_right" style="padding: 3px 0" type="text">没有账号？</el-button>
@@ -76,9 +74,15 @@
 </script>
 
 <style>
-    .login-head{
-        height: 10vh;
+    .login-head {
+        height: 60px;
+        line-height: 60px;
         margin-bottom: 20vh;
+    }
+    .login-head .el-dropdown-link {
+        cursor: pointer;
+        color: #409EFF;
+        font-size: 15px;
     }
     .float_right{
         float: right;
