@@ -3,7 +3,7 @@
         <Header></Header>
         <el-container style="height: 850px; border: 0">
             <Menu></Menu>
-            <Main :tableData="tableData" :columnsData="columnData" :title="title"
+            <Main :tableData="filterData" :columnsData="columnData" :title="title"
                   :currentPage.sync="currentPage" :pageSize.sync="pageSize" :totalCount="totalCount"></Main>
         </el-container>
     </div>
@@ -17,8 +17,9 @@
     export default {
         data() {
             return {
-                title:'国内要闻',
+                title:'国内要闻（假分页）',
                 tableData: [],
+                allData:[],
                 currentPage: 1,
                 pageSize: 10,
                 totalCount: 0,
@@ -43,9 +44,10 @@
         },
         methods:{
             getNews(){
-                this.$axios.get("http://www.location.com/news/list?page=" + this.currentPage + "&size=" + this.pageSize)
+                this.$axios.get("http://www.location.com/news/all")
                     .then((response)=>{
-                        this.tableData = response.data.newslist;
+                        window.console.log('call axios to get data');
+                        this.allData = response.data.newslist;
                         this.totalCount = response.data.totalCount;//总条数
                     });
             }
@@ -56,9 +58,20 @@
         created(){
             this.getNews();
         },
-        beforeUpdate(){
-            this.getNews();
-        },
+        computed:{
+            filterData(){
+                if (this.totalCount) {
+                    const start = (this.currentPage-1) * this.pageSize;
+                    const end = this.currentPage * this.pageSize > this.totalCount ? this.totalCount : this.currentPage * this.pageSize;
+                    let result = [];
+                    for(let i=start; i<end; i++){
+                        result.push(this.allData[i]);
+                    }
+                    return result;
+                }
+                return [];
+            }
+        }
     }
 </script>
 

@@ -33,6 +33,8 @@ function getDataByPage(page, pagesize, data, key) {
     return ret;
 }
 
+//获取所有数据，假分页
+Mock.mock("http://www.location.com/news/all","get", newsData);
 
 
 /**

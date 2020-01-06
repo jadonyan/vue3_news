@@ -4,7 +4,8 @@
         <el-container style="height: 880px; border: 0">
             <Menu></Menu>
             <Main :tableData="tableData" :columnsData="columnData" :title="title"
-                  :currentPage.sync="currentPage" :pageSize.sync="pageSize" :totalCount="totalCount"></Main>
+                  :currentPage.sync="currentPage" :pageSize.sync="pageSize"
+                  :totalCount="totalCount"></Main>
         </el-container>
     </div>
 </template>
@@ -17,7 +18,7 @@
     export default {
         data() {
             return {
-                title:'国外要闻',
+                title:'国外要闻（真分页）',
                 tableData: [],
                 currentPage: 1,
                 pageSize: 10,
@@ -44,10 +45,11 @@
         methods:{
             getNews(){
                 this.$axios.get("http://www.location.com/news/list?page=" + this.currentPage + "&size=" + this.pageSize)
-                        .then((response)=>{
-                            this.tableData=response.data.newslist;
-                            this.totalCount = response.data.totalCount;//总条数
-                        })
+                    .then((response)=>{
+                        window.console.log('call axios to get data');
+                        this.tableData=response.data.newslist;
+                        this.totalCount = response.data.totalCount;//总条数
+                    })
             }
         },
         components:{
@@ -56,9 +58,14 @@
         created(){
             this.getNews();
         },
-        beforeUpdate(){
-            this.getNews();
-        },
+        watch:{
+            currentPage() {
+                this.getNews();
+            },
+            pageSize() {
+                this.getNews();
+            }
+        }
     }
 </script>
 
