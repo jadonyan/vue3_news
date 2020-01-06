@@ -1,9 +1,10 @@
 <template>
     <div>
         <Header></Header>
-        <el-container style="height: 880px; border: 0">
+        <el-container style="height: 850px; border: 0">
             <Menu></Menu>
-            <Main :tableData="tableData" :columnsData="columnData" :title="title"></Main>
+            <Main :tableData="tableData" :columnsData="columnData" :title="title"
+                  :currentPage.sync="currentPage" :pageSize.sync="pageSize" :totalCount="totalCount"></Main>
         </el-container>
     </div>
 </template>
@@ -18,6 +19,9 @@
             return {
                 title:'国内要闻',
                 tableData: [],
+                currentPage: 1,
+                pageSize: 10,
+                totalCount: 0,
                 columnData:[
                     {
                         prop:'news_title',
@@ -39,10 +43,11 @@
         },
         methods:{
             getNews(){
-                this.$axios.get("http://www.location.com/news/list")
+                this.$axios.get("http://www.location.com/news/list?page=" + this.currentPage + "&size=" + this.pageSize)
                     .then((response)=>{
-                        this.tableData=response.data.newslist;
-                    })
+                        this.tableData = response.data.newslist;
+                        this.totalCount = response.data.totalCount;//总条数
+                    });
             }
         },
         components:{
@@ -50,7 +55,10 @@
         },
         created(){
             this.getNews();
-        }
+        },
+        beforeUpdate(){
+            this.getNews();
+        },
     }
 </script>
 
