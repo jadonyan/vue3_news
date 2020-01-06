@@ -8,6 +8,8 @@ import axios from 'axios'
 import routes from './router'
 import store from "./store"
 import './mock/mock'
+import {globalMethods} from './components/mixin'
+Vue.mixin(globalMethods)
 
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios    //全局注册，使用方法为:this.$axios

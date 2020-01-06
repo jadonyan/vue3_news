@@ -1,7 +1,7 @@
 <template>
     <div class="login-div">
         <div class="login-head">
-            <Languages @changeLang="changeLang" :langs="langs"></Languages>
+            <Languages @changeLang="changeLang"></Languages>
         </div>
         <div class="login-body">
             <el-col :span="8" :offset="8">
@@ -41,9 +41,6 @@
                     username:'zhangsan',
                     password:'123',
                 },
-                langs:[
-                    '简体中文', 'English', '繁體中文'
-                ]
             }
         },
         methods: {
@@ -51,7 +48,6 @@
                 //TODO::check用户名和密码
                 this.$axios.post("http://www.location.com/login")
                     .then((response)=>{
-                        window.console.log(response);
                         if(response.data.isLogin){
                             //将用户信息填入到localstorage中
                             this.$store.commit('$_setStorage', JSON.stringify(this.user))
@@ -60,16 +56,12 @@
                     });
             },
             changeLang(lang){
-                //TODO::后期再实现多国化
-                this.$message({
-                    message: this.langs[lang],
-                    type: 'success'
-                });
+                this.succMsgHint(this.LANGS[lang]);
             }
         },
         components:{
             Languages
-        }
+        },
     }
 </script>
 

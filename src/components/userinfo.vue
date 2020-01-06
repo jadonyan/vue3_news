@@ -20,19 +20,13 @@
         methods:{
             logout(){
                 this.$store.commit('$_removeStorage');
-                this.$message({
-                    message: this.user.username + '注销成功',
-                    type: 'success'
-                });
+                this.succMsgNotify('提醒', this.user.username + '注销成功');
                 this.$router.push('login');
             },
             handleCommand(command){
                 switch(command){
                     case 'profile':
-                        this.$message({
-                            message: '个人信息完善中',
-                            type: 'success'
-                        });
+                        this.succMsgNotify('提醒', '个人信息完善中');
                         break;
                     case 'logout':
                         this.logout();

@@ -46,7 +46,7 @@
             getNews(){
                 this.$axios.get("http://www.location.com/news/all")
                     .then((response)=>{
-                        window.console.log('call axios to get data');
+                        this.clog('call axios to get data');
                         this.allData = response.data.newslist;
                         this.totalCount = response.data.totalCount;//总条数
                     });

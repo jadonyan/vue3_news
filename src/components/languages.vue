@@ -5,7 +5,7 @@
                 {{choosedLanguage}}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item v-for="(lang, key) in langs" :key="key" :command="key">{{lang}}</el-dropdown-item>
+                <el-dropdown-item v-for="(lang, key) in LANGS" :key="key" :command="key">{{lang}}</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
     </div>
@@ -13,9 +13,6 @@
 
 <script>
     export default {
-        props:[
-            'langs'
-        ],
         data(){
             return {
                 choosedLanguage: "简体中文",

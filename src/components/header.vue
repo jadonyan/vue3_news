@@ -2,7 +2,7 @@
     <div class="header_div">
         <Logo><div slot="app_name" style="color: #fff; float: left">Application</div></Logo>
         <UserInfo :user="user"></UserInfo>
-        <Languages @changeLang="changeLang" :langs="langs"></Languages>
+        <Languages @changeLang="changeLang"></Languages>
     </div>
 </template>
 
@@ -16,16 +16,13 @@
             return {
                 isLogin: false,
                 user: null,
-                langs:[
-                    '简体中文', 'English', '繁體中文'
-                ]
             }
         },
         methods:{
             changeLang(lang){
                 //TODO::后期再实现多国化
                 this.$message({
-                    message: this.langs[lang],
+                    message: this.LANGS[lang],
                     type: 'success'
                 });
             }
