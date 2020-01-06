@@ -21,10 +21,17 @@
         methods:{
             changeLang(lang){
                 //TODO::后期再实现多国化
-                this.$message({
-                    message: this.LANGS[lang],
-                    type: 'success'
-                });
+                this.succMsgHint(this.LANGS[lang]);
+                this.openLoading();
+            },
+            openLoading(){
+                this.$loading('loading...');
+                setTimeout(function () {
+                    this.closeLoading()
+                }, 2000)
+            },
+            closeLoading(){
+                this.$loading.close();
             }
         },
         created(){

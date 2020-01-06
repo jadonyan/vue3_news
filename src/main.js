@@ -9,10 +9,13 @@ import routes from '@/router'
 import store from "@/store"
 import './mock/mock'
 import {globalMethods} from '@/components/mixin'
-Vue.mixin(globalMethods)
+import './plugins/loading/index.css'
+import Toast from './plugins/loading'
 
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;    //全局注册，使用方法为:this.$axios
+Vue.mixin(globalMethods)
+Vue.use(Toast);
 
 Vue.use(ElementUI);
 Vue.use(VueRouter);
