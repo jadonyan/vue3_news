@@ -5,7 +5,7 @@
                 <template slot="title"><i class="el-icon-menu"></i>地区</template>
                 <el-menu-item-group>
                     <el-menu-item index="1-1" :class="currRouteName === 'home' ? 'active':''">
-                        <el-link href="home" :underline="false">国内</el-link>
+                        <el-link href="home" :underline="false">国产</el-link>
                     </el-menu-item>
                     <el-menu-item index="1-2" :class="currRouteName === 'abroad' ? 'active':''">
                         <el-link href="abroad" :underline="false">国外</el-link>

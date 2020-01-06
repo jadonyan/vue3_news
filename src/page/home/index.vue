@@ -10,14 +10,14 @@
 </template>
 
 <script>
-    import Header from '../../components/header.vue'
-    import Menu from '../../components/menu.vue'
-    import Main from '../../components/main.vue'
+    import Header from '@/components/header.vue'
+    import Menu from '@/components/menu.vue'
+    import Main from '@/components/main.vue'
 
     export default {
         data() {
             return {
-                title:'国内要闻（假分页）',
+                title:'国内图书（假分页）',
                 tableData: [],
                 allData:[],
                 currentPage: 1,
@@ -25,29 +25,29 @@
                 totalCount: 0,
                 columnData:[
                     {
-                        prop:'news_title',
-                        label: '新闻标题',
+                        prop:'book_title',
+                        label: '图书标题',
                         width: '140',
                     },
                     {
-                        prop:'news_press',
-                        label: '新闻媒介',
+                        prop:'book_press',
+                        label: '出版社',
                         width: '140',
                     },
                     {
-                        prop:'news_time',
-                        label: '发布时间',
+                        prop:'book_time',
+                        label: '添加时间',
                         width: '',
                     },
                 ],
             }
         },
         methods:{
-            getNews(){
-                this.$axios.get("http://www.location.com/news/all")
+            getBooks(){
+                this.$axios.get("http://www.location.com/books/all")
                     .then((response)=>{
                         this.clog('call axios to get data');
-                        this.allData = response.data.newslist;
+                        this.allData = response.data.bookslist;
                         this.totalCount = response.data.totalCount;//总条数
                     });
             }
@@ -56,7 +56,7 @@
             Header,Menu,Main
         },
         created(){
-            this.getNews();
+            this.getBooks();
         },
         computed:{
             filterData(){

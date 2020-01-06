@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import Languages from '../../components/languages.vue'
+    import Languages from '@/components/languages.vue'
 
     export default {
         data() {

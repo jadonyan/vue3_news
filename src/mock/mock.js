@@ -6,18 +6,18 @@ Mock.mock("http://www.location.com/login","post",{
 });
 
 //数据模块
-const presslist=['人民日报',"今日头条","新浪新闻","其他"]
-const newsData = Mock.mock({
-    "newslist|50": [
-        {"news_id|+1":101,"news_title":"@ctitle",
-            "news_press|1":presslist,"news_time":"@date('yyyy-MM-dd HH:mm:ss')"
+const presslist=['人民日报出版社', '人民邮电出版社', '清华大学出版社', '机械工业出版社', '电子工业出版社']
+const booksData = Mock.mock({
+    "bookslist|50": [
+        {"book_id|+1":101,"book_title":"@ctitle",
+            "book_press|1":presslist,"book_time":"@date('yyyy-MM-dd HH:mm:ss')"
         }
     ],
     "totalCount":50
 });
-Mock.mock(new RegExp("http://www.location.com/news/list.*"), "get", (options) => {
+Mock.mock(new RegExp("http://www.location.com/books/list.*"), "get", (options) => {
     const page = GET("page",options.url,1),pagesize=GET("size",options.url,10);
-    return getDataByPage(page,pagesize,newsData,"newslist")
+    return getDataByPage(page,pagesize,booksData,"bookslist")
 })
 //根据页码 页尺寸 来过滤数据
 function getDataByPage(page, pagesize, data, key) {
@@ -34,7 +34,7 @@ function getDataByPage(page, pagesize, data, key) {
 }
 
 //获取所有数据，假分页
-Mock.mock("http://www.location.com/news/all","get", newsData);
+Mock.mock("http://www.location.com/books/all","get", booksData);
 
 
 /**
