@@ -9,8 +9,8 @@ import routes from '@/router'
 import store from "@/store"
 import './mock/mock'
 import {globalMethods} from '@/components/mixin'
-import './plugins/loading/index.css'
-import Toast from './plugins/loading'
+import './plugins/toast/index.css'
+import Toast from './plugins/toast'
 
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;    //全局注册，使用方法为:this.$axios

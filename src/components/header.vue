@@ -21,18 +21,9 @@
         methods:{
             changeLang(lang){
                 //TODO::后期再实现多国化
-                this.succMsgHint(this.LANGS[lang]);
-                this.openLoading();
+                this.$toast(this.LANGS[lang] + ' 切换成功', 'top');
+                //this.succMsgHint(this.LANGS[lang]);
             },
-            openLoading(){
-                this.$loading('loading...');
-                setTimeout(function () {
-                    this.closeLoading()
-                }, 2000)
-            },
-            closeLoading(){
-                this.$loading.close();
-            }
         },
         created(){
             if (this.$store.getters.getStorage) {
